@@ -2,7 +2,7 @@ module ZeroDowntimeMigrations
   class Validation
     class AddReference < Validation
       def validate!
-        return if !migration.index? && migration.safe?
+        return if !migration.index? || migration.safe?
         error!(message)
       end
 
