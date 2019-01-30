@@ -8,6 +8,14 @@ Catch problematic migrations at development/test time! Heavily inspired by these
 * https://github.com/ankane/strong_migrations
 * https://github.com/foobarfighter/safe-migrations
 
+## Cleo setup notes...
+
+To set this repo up for development clone from here and add the source remote like:
+
+```
+$ git remote add upstream git@github.com:LendingHome/zero_downtime_migrations.git
+```
+
 ## Installation
 
 Simply add this gem to the project `Gemfile`.
