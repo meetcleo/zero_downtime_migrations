@@ -1,8 +1,9 @@
 RSpec.describe ZeroDowntimeMigrations::Validation do
-  subject { described_class.new(migration, *args) }
+  subject { described_class.new(migration, *args, **kwargs) }
 
   let(:migration) { double("migration") }
   let(:args) { [] }
+  let(:kwargs) { {} }
 
   describe ".validate!" do
     let(:error) { ZeroDowntimeMigrations::UndefinedValidationError }
@@ -35,7 +36,8 @@ RSpec.describe ZeroDowntimeMigrations::Validation do
 
   describe "#options" do
     context "when the last arg is a hash" do
-      let(:args) { [:one, :two, { three: :four }] }
+      let(:args) { [:one, :two] }
+      let(:kwargs) { { three: :four } }
       it "returns the last arg" do
         expect(subject.options).to eq(three: :four)
       end
