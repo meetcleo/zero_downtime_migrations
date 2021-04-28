@@ -76,10 +76,10 @@ module ZeroDowntimeMigrations
       %i(add_index add_reference).include?(method)
     end
 
-    def method_missing(method, *args)
+    def method_missing(method, *args, **kwargs)
       Migration.ddl = true if ddl_method?(method)
       Migration.index = true if index_method?(method)
-      validate(method, *args)
+      validate(method, *args, **kwargs)
       super
     end
 
@@ -103,8 +103,8 @@ module ZeroDowntimeMigrations
       Migration.safe = safe
     end
 
-    def validate(type, *args)
-      Validation.validate!(type, *args)
+    def validate(type, *args, **kwargs)
+      Validation.validate!(type, *args, **kwargs)
     rescue UndefinedValidationError
       nil
     end
