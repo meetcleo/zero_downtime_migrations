@@ -6,7 +6,7 @@ module ZeroDowntimeMigrations
       mod.singleton_class.prepend(DSL)
     end
 
-    def initialize(*)
+    def initialize(*, **, &block)
       ActiveRecord::Base.send(:prepend, Data)
       ActiveRecord::Relation.send(:prepend, Relation)
       super
@@ -16,7 +16,7 @@ module ZeroDowntimeMigrations
       !!disable_ddl_transaction
     end
 
-    def define(*)
+    def define(*, **, &block)
       Migration.current = self
       Migration.safe = true
       super.tap { Migration.current = nil }
